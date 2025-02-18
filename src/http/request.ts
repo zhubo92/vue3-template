@@ -13,7 +13,9 @@ interface BaseResponse<T = any> {
 }
 
 const service: AxiosInstance = axios.create({
-    baseURL: import.meta.env.BASE_URL,
+    baseURL: import.meta.env.VITE_APP_USE_MOCK
+        ? import.meta.env.VITE_APP_MOCK_BASEURL
+        : import.meta.env.VITE_APP_API_BASEURL,
     timeout: 15000
 });
 
