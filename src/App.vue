@@ -4,3 +4,8 @@
     <!-- 所以我们这里直接写一个 router-view -->
     <router-view></router-view>
 </template>
+<style>
+#app {
+    height: 100vh;
+}
+</style>

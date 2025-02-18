@@ -29,6 +29,7 @@
         "@commitlint/config-conventional": "^19.7.1",
         "@eslint/create-config": "^1.4.0",
         "@eslint/js": "^9.20.0",
+        "@iconify-json/ep": "^1.2.2",
         "@types/node": "^22.13.4",
         "@types/nprogress": "^0.2.3",
         "@vitejs/plugin-vue": "^5.2.1",
@@ -52,7 +53,7 @@
         "stylelint-config-standard": "^34.0.0",
         "stylelint-config-standard-vue": "^1.0.0",
         "stylelint-less": "^2.0.0",
-        "stylelint-order": "^6.0.3",
+        "stylelint-order": "^6.0.4",
         "typescript": "^5.7.3",
         "typescript-eslint": "^8.24.1",
         "unplugin-auto-import": "^19.1.0",
@@ -76,11 +77,9 @@
         ],
         "*.vue": [
             "eslint --fix",
-            "prettier --write",
-            "stylelint --fix"
+            "prettier --write"
         ],
         "*.{scss,less,styl,html}": [
-            "stylelint --fix",
             "prettier --write"
         ],
         "*.md": [

@@ -8,7 +8,7 @@ export interface ILoginRequest {
     password: string;
 }
 
-export const useUserStoreHook = defineStore("userInfo", {
+const useUserStoreHook = defineStore("userInfo", {
     state: (): IUserState => ({
         username: "张三",
         accessToken: "",
@@ -25,7 +25,7 @@ export const useUserStoreHook = defineStore("userInfo", {
             });
         },
         storeRefreshUserInfo() {
-            if (this.username === "张三" && this.accessToken != "") {
+            if (this.username === "admin" && this.accessToken != "") {
                 refreshUserInfoApi({
                     accessToken: this.accessToken
                 })
