@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import Header from "./components/Header.vue";
+import { useRouter, useRoute } from "vue-router";
+
+const router = useRouter();
+const route = useRoute();
+
+const currentRoutePath = route.path;
+const menuList = router.getRoutes().filter((route) => route.meta.isShow);
+console.log(menuList);
 </script>
 
 <template>
@@ -10,11 +18,10 @@ import Header from "./components/Header.vue";
             </el-header>
             <el-container>
                 <el-aside width="200px">
-                    <el-menu default-active="/">
-                        <el-menu-item index="/">项目介绍</el-menu-item>
-                        <el-menu-item index="/user">用户列表</el-menu-item>
-                        <el-menu-item index="/role">角色列表</el-menu-item>
-                        <el-menu-item index="/auth">权限列表</el-menu-item>
+                    <el-menu :default-active="currentRoutePath" router>
+                        <el-menu-item v-for="item in menuList" :key="item.path" :index="item.path">
+                            {{ item.meta.title }}
+                        </el-menu-item>
                     </el-menu>
                 </el-aside>
                 <el-main>
