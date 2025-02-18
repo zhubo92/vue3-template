@@ -8,7 +8,10 @@ import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended"
 export default [
     {
         languageOptions: {
-            globals: globals["shared-node-browser"]
+            globals: {
+                ...globals.browser,
+                ...globals.node
+            }
         }
     },
     pluginJs.configs.recommended,
@@ -16,7 +19,7 @@ export default [
     ...pluginVue.configs["flat/essential"],
     { files: ["**/*.vue"], languageOptions: { parserOptions: { parser: tseslint.parser } } },
     {
-        files: ["**/*.{js,mjs,cjs,ts,vue}"],
+        files: ["**/*.{js,mjs,cjs,ts,vue,less}"],
         rules: {
             "@typescript-eslint/no-unused-vars": "off",
             indent: [
