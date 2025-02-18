@@ -6,7 +6,11 @@ import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended"
 
 /** @type {import("eslint").Linter.Config[]} */
 export default [
-    { languageOptions: { globals: globals.browser } },
+    {
+        languageOptions: {
+            globals: globals["shared-node-browser"]
+        }
+    },
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,
     ...pluginVue.configs["flat/essential"],
@@ -52,11 +56,7 @@ export default [
             ".local",
             "/bin",
             "Dockerfile"
-        ],
-        env: {
-            node: true,
-            browser: true
-        }
+        ]
     },
     eslintPluginPrettierRecommended
 ];
