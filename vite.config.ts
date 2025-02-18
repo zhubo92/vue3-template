@@ -22,7 +22,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
             // Vue模板文件编译插件
             vue(),
             // jsx文件编译插件
-            vueJsx(),
+            vueJsx()
         ],
         // 运行后本地预览的服务器
         server: {
@@ -43,18 +43,18 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
                 [env.VITE_APP_API_BASEURL]: {
                     target: "http://localhost:9000",
                     // 改变 Host Header
-                    changeOrigin: true,
+                    changeOrigin: true
                     // 发起请求时将 '/api' 替换为 ''
                     //rewrite: (path) => path.replace(/^\/api/, ""),
                 },
                 [env.VITE_APP_MOCK_BASEURL]: {
                     target: "http://localhost:9000",
                     // 改变 Host Header
-                    changeOrigin: true,
+                    changeOrigin: true
                     // 发起请求时将 '/api' 替换为 ''
                     //rewrite: (path) => path.replace(/^\/api/, ""),
-                },
-            },
+                }
+            }
         },
         // 打包配置
         build: {
@@ -66,25 +66,23 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
                 // 打包入口文件 根目录下的 index.html
                 // 也就是项目从哪个文件开始打包
                 input: {
-                    index: fileURLToPath(
-                        new URL("./index.html", import.meta.url),
-                    ),
+                    index: fileURLToPath(new URL("./index.html", import.meta.url))
                 },
                 // 静态资源分类打包
                 output: {
                     format: "esm",
                     chunkFileNames: "static/js/[name]-[hash].js",
                     entryFileNames: "static/js/[name]-[hash].js",
-                    assetFileNames: "static/[ext]/[name]-[hash].[ext]",
-                },
-            },
+                    assetFileNames: "static/[ext]/[name]-[hash].[ext]"
+                }
+            }
         },
         // 配置别名
         resolve: {
             alias: {
                 "@": fileURLToPath(new URL("./src", import.meta.url)),
-                "#": fileURLToPath(new URL("./types", import.meta.url)),
-            },
-        },
+                "#": fileURLToPath(new URL("./types", import.meta.url))
+            }
+        }
     };
 });

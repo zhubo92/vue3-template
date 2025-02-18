@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import pinia from "@/store";
-import {refreshUserInfoApi, userLoginApi} from "@/api/user";
-import {IUserState} from "@/store/user/type";
+import { refreshUserInfoApi, userLoginApi } from "@/api/user";
+import { IUserState } from "@/store/user/type";
 
 export interface ILoginRequest {
     username: string;
@@ -12,7 +12,7 @@ export const useUserStoreHook = defineStore("userInfo", {
     state: (): IUserState => ({
         username: "张三",
         accessToken: "",
-        roles: ["common"],
+        roles: ["common"]
     }),
     getters: {},
     actions: {
@@ -27,7 +27,7 @@ export const useUserStoreHook = defineStore("userInfo", {
         storeRefreshUserInfo() {
             if (this.username === "张三" && this.accessToken != "") {
                 refreshUserInfoApi({
-                    accessToken: this.accessToken,
+                    accessToken: this.accessToken
                 })
                     .then((res) => {
                         this.username = res.username;
@@ -38,13 +38,13 @@ export const useUserStoreHook = defineStore("userInfo", {
                         this.accessToken = "";
                     });
             }
-        },
+        }
     },
     persist: {
         key: "userInfo",
         storage: sessionStorage,
-        pick: ["accessToken"],
-    },
+        pick: ["accessToken"]
+    }
 });
 
 export function useUserStore() {

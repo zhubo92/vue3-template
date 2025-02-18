@@ -1,7 +1,7 @@
-import axios, {AxiosRequestConfig} from "axios";
-import type {AxiosInstance, AxiosResponse, AxiosError, InternalAxiosRequestConfig,} from "axios";
-import {ElMessage} from "element-plus";
-import {getMessageInfo} from "@/http/status";
+import axios, { AxiosRequestConfig } from "axios";
+import type { AxiosInstance, AxiosResponse, AxiosError, InternalAxiosRequestConfig } from "axios";
+import { ElMessage } from "element-plus";
+import { getMessageInfo } from "@/http/status";
 
 // BaseResponse 为 res.data 的类型
 // T 为 res.data.data 的类型 不同的接口会返回不同的 data 所以我们加一个泛型表示
@@ -14,7 +14,7 @@ interface BaseResponse<T = any> {
 
 const service: AxiosInstance = axios.create({
     baseURL: import.meta.env.BASE_URL,
-    timeout: 15000,
+    timeout: 15000
 });
 
 // axios实例拦截请求
@@ -29,27 +29,27 @@ service.interceptors.request.use(
 
 // axios实例拦截响应
 service.interceptors.response.use(
-    ({status, data}: AxiosResponse) => {
-        if(status !== 200) {
+    ({ status, data }: AxiosResponse) => {
+        if (status !== 200) {
             ElMessage({
                 message: getMessageInfo(status),
-                type: "error",
+                type: "error"
             });
         }
         return data;
     },
     (error: any) => {
-        const {response} = error;
-        if(response) {
+        const { response } = error;
+        if (response) {
             ElMessage({
                 message: getMessageInfo(response.status),
-                type: "error",
+                type: "error"
             });
             return Promise.reject(response.data);
         }
         ElMessage({
             message: "网络连接异常,请稍后再试!",
-            type: "error",
+            type: "error"
         });
         return Promise.reject(error);
     }
@@ -60,26 +60,24 @@ service.interceptors.response.use(
 const requestInstance = <T = any>(config: AxiosRequestConfig): Promise<T> => {
     const conf = config;
     return new Promise((resolve, reject) => {
-        service
-            .request<any, AxiosResponse<BaseResponse>>(conf)
-            .then((res: AxiosResponse<BaseResponse>) => {
-                const {data, code, message} = res.data;
-                // 如果data.code为错误代码返回message信息
-                if (code != 1) {
-                    ElMessage({
-                        message,
-                        type: "error",
-                    });
-                    reject(message);
-                } else {
-                    ElMessage({
-                        message,
-                        type: "success",
-                    });
-                    // 此处返回data信息 也就是 api 中配置好的 Response类型
-                    resolve(data as T);
-                }
-            });
+        service.request<any, AxiosResponse<BaseResponse>>(conf).then((res: AxiosResponse<BaseResponse>) => {
+            const { data, code, message } = res.data;
+            // 如果data.code为错误代码返回message信息
+            if (code != 1) {
+                ElMessage({
+                    message,
+                    type: "error"
+                });
+                reject(message);
+            } else {
+                ElMessage({
+                    message,
+                    type: "success"
+                });
+                // 此处返回data信息 也就是 api 中配置好的 Response类型
+                resolve(data as T);
+            }
+        });
     });
 };
 

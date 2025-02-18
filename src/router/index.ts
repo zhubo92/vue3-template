@@ -14,11 +14,11 @@ import "nprogress/nprogress.css";
 // ];
 
 export const aboutRouter = {
-    path: '/about',
-    name: 'about',
-    component: () => import('@/views/about/index.vue'),
+    path: "/about",
+    name: "about",
+    component: () => import("@/views/about/index.vue"),
     meta: {},
-    children: [],
+    children: []
 } as RouteRecordRaw;
 
 // 组合路由信息
@@ -26,7 +26,7 @@ export const aboutRouter = {
 // 它可以将模块中全部内容导入并返回一个Record对象
 // 默认为懒加载模式 加入配置项 eager 取消懒加载
 const modules: Record<string, any> = import.meta.glob(["./modules/*.ts"], {
-    eager: true,
+    eager: true
 });
 const routes: Array<RouteRecordRaw> = [];
 Object.keys(modules).forEach((key) => {
@@ -37,7 +37,7 @@ routes.push(aboutRouter);
 
 const router = createRouter({
     history: createWebHashHistory(),
-    routes,
+    routes
 });
 
 router.beforeEach(async (_to, _from, next) => {

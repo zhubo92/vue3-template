@@ -1,4 +1,4 @@
-export const getMessageInfo = (status: number|string): string => {
+export const getMessageInfo = (status: number | string): string => {
     switch (status) {
         case 400:
             return "请求错误(400)";
@@ -13,4 +13,4 @@ export const getMessageInfo = (status: number|string): string => {
         default:
             return `连接出错(${status})!`;
     }
-}
+};
