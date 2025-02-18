@@ -29,6 +29,7 @@ specifiers:
   stylelint: ^16.14.1
   stylelint-config-html: ^1.1.0
   stylelint-config-prettier: ^9.0.5
+  stylelint-config-recommended-less: ^3.0.1
   stylelint-config-standard: ^37.0.0
   stylelint-config-standard-vue: ^1.0.0
   stylelint-less: ^3.0.1
@@ -73,6 +74,7 @@ devDependencies:
   stylelint: 16.14.1_typescript@5.7.3
   stylelint-config-html: 1.1.0_chba62bzea2gya4gcc2qgbt4ni
   stylelint-config-prettier: 9.0.5_stylelint@16.14.1
+  stylelint-config-recommended-less: 3.0.1_stylelint@16.14.1
   stylelint-config-standard: 37.0.0_stylelint@16.14.1
   stylelint-config-standard-vue: 1.0.0_chba62bzea2gya4gcc2qgbt4ni
   stylelint-less: 3.0.1_stylelint@16.14.1
@@ -3915,6 +3917,21 @@ packages:
       stylelint: 16.14.1_typescript@5.7.3
     dev: true
 
+  /stylelint-config-recommended-less/3.0.1_stylelint@16.14.1:
+    resolution: {integrity: sha512-4vp9Z+W0KwxgPL4L3WxXtlMurfen0NXKFFxPHzDYn2s6WVS26Gg7jt3FIO4ZLM1x8WalCR02nwK2h0TH/mafBg==}
+    peerDependencies:
+      postcss: ^8.3.3
+      stylelint: ^16.0.2
+    peerDependenciesMeta:
+      postcss:
+        optional: true
+    dependencies:
+      postcss-less: 6.0.0
+      stylelint: 16.14.1_typescript@5.7.3
+      stylelint-config-recommended: 14.0.1_stylelint@16.14.1
+      stylelint-less: 3.0.1_stylelint@16.14.1
+    dev: true
+
   /stylelint-config-recommended-vue/1.6.0_chba62bzea2gya4gcc2qgbt4ni:
     resolution: {integrity: sha512-syk1adIHvbH2T1OiR/spUK4oQy35PZIDw8Zmc7E0+eVK9Z9SK3tdMpGRT/bgGnAPpMt/WaL9K1u0tlF6xM0sMQ==}
     engines: {node: ^12 || >=14}
@@ -3927,6 +3944,15 @@ packages:
       stylelint: 16.14.1_typescript@5.7.3
       stylelint-config-html: 1.1.0_chba62bzea2gya4gcc2qgbt4ni
       stylelint-config-recommended: 15.0.0_stylelint@16.14.1
+    dev: true
+
+  /stylelint-config-recommended/14.0.1_stylelint@16.14.1:
+    resolution: {integrity: sha512-bLvc1WOz/14aPImu/cufKAZYfXs/A/owZfSMZ4N+16WGXLoX5lOir53M6odBxvhgmgdxCVnNySJmZKx73T93cg==}
+    engines: {node: '>=18.12.0'}
+    peerDependencies:
+      stylelint: ^16.1.0
+    dependencies:
+      stylelint: 16.14.1_typescript@5.7.3
     dev: true
 
   /stylelint-config-recommended/15.0.0_stylelint@16.14.1:
