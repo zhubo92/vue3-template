@@ -1,13 +1,15 @@
-import { createRouter, RouteRecordRaw, createWebHashHistory } from "vue-router";
+import { RouteRecordRaw, createRouter, createWebHashHistory } from "vue-router";
 import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
+// 配置路由
 const routes: Array<RouteRecordRaw> = [
     {
         path: "/",
-        name: "Home",
-        component: () => import("@/views/home/index.vue"),
+        name: "home",
+        component: () => import("../views//home/index.vue"),
         meta: {},
-        children: []
+        children: [],
     },
 ];
 
@@ -16,7 +18,7 @@ const router = createRouter({
     routes,
 });
 
-router.beforeEach((_to, _from, next) => {
+router.beforeEach(async (_to, _from, next) => {
     NProgress.start();
     next();
 });
