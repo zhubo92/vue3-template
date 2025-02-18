@@ -52,7 +52,11 @@ export default [
             ".local",
             "/bin",
             "Dockerfile"
-        ]
+        ],
+        env: {
+            node: true,
+            browser: true
+        }
     },
     eslintPluginPrettierRecommended
 ];

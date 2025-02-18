@@ -1,5 +1,5 @@
 // 这里是通俗的解释 详情请前往官方文档查阅
-export default {
+module.exports = {
     ignores: [(commit) => commit.includes("init")],
     extends: ["@commitlint/config-conventional"],
     rules: {
