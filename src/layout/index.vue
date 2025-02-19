@@ -7,7 +7,6 @@ const route = useRoute();
 
 const currentRoutePath = route.path;
 const menuList = router.getRoutes().filter((route) => route.meta.isShow);
-console.log(menuList);
 </script>
 
 <template>

@@ -1,4 +1,4 @@
-import { IBaseResponse, post } from "@/http/request";
+import { IBaseResponse, post, get } from "@/http/request";
 
 export interface ILoginRequest {
     username: string;
@@ -21,4 +21,8 @@ export const userLoginApi = async (data: ILoginRequest) => {
 
 export const refreshUserInfoApi = async (data: IReLoginRequest) => {
     return post<ILoginResponse>({}, "/getUserInfo", data);
+};
+
+export const getUserListApi = async () => {
+    return get({}, "/getUserList");
 };

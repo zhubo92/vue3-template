@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, onMounted, reactive, ref, watch } from "vue";
-import { getProjectList } from "@/api/projects";
+import { getProjectListApi } from "@/api/projects";
 
 interface IProject {
     userId: number;
@@ -34,7 +34,7 @@ watch([() => searchData.title, () => searchData.introduce], () => {
 });
 
 function fetchData() {
-    getProjectList().then((res) => {
+    getProjectListApi().then((res) => {
         projectList.value = res.data;
         searchData.dataCount = res.data.length;
     });
@@ -45,23 +45,28 @@ function onCurrentChange(page: number) {
 function onSizeChange(pageSize: number) {
     searchData.pageSize = pageSize;
 }
-function onSearch() {
-    let result: IProject[] = [];
-    if (searchData.title) {
-        result = projectList.value.filter(
-            (item) => item.title.toLowerCase().indexOf(searchData.title.toLowerCase()) > -1
-        );
-    } else if (searchData.introduce) {
-        result = projectList.value.filter(
-            (item) => item.introduce.toLowerCase().indexOf(searchData.introduce.toLowerCase()) > -1
-        );
+const onSearch = () => {
+    console.log(projectList.value);
+    let res: IProject[] = [];
+    if (searchData.title || searchData.introduce) {
+        if (searchData.title) {
+            res = projectList.value.filter((value) => {
+                return value.title.indexOf(searchData.title) !== -1;
+            });
+        }
+        if (searchData.introduce) {
+            if (searchData.title) projectList.value = res;
+            res = projectList.value.filter((value) => {
+                return value.introduce.indexOf(searchData.introduce) !== -1;
+            });
+        }
     } else {
-        result = projectList;
+        res = projectList.value;
     }
-    projectList.value = result;
+    projectList.value = res;
     searchData.currentPage = 1;
     searchData.dataCount = projectList.value.length;
-}
+};
 </script>
 <template>
     <div class="wrap-content">
@@ -93,4 +98,17 @@ function onSearch() {
         />
     </div>
 </template>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.wrap-content {
+    display: flex;
+    height: max-content;
+    flex-direction: column;
+
+    .pagination {
+        display: flex;
+        // justify-content: right;
+        // align-items: right;
+        margin: 10px;
+    }
+}
+</style>
