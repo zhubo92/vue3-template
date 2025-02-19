@@ -1,5 +1,10 @@
 <script lang="ts" setup></script>
 <template>
-    <div>about</div>
+    <div class="wrap-about">about</div>
 </template>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.wrap-about {
+    color: @color;
+    background-color: @bg;
+}
+</style>

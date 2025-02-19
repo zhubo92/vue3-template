@@ -26,6 +26,15 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         publicDir: fileURLToPath(new URL("./public", import.meta.url)),
         // 需要处理的静态资源位置
         assetsInclude: fileURLToPath(new URL("./src/assets", import.meta.url)),
+        css: {
+            // css 预处理配置
+            preprocessorOptions: {
+                less: {
+                    // 在 less 中添加额外内容，每个 less 模块编译前都会添加这段代码
+                    additionalData: `@import "@/styles/variable.less";`
+                }
+            }
+        },
         plugins: [
             // Vue模板文件编译插件
             vue(),
