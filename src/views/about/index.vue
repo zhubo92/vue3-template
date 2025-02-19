@@ -6,5 +6,7 @@
 .wrap-about {
     color: @color;
     background-color: @bg;
+    font-size: 20px;
+    padding: 20px;
 }
 </style>
