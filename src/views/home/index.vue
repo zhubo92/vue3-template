@@ -88,7 +88,7 @@ const onSearch = () => {
             background
             :page-sizes="[5, 10, 20, 30, 40]"
             :page-size="searchData.pageSize"
-            :pager-count="searchData.currentPage"
+            :current-page="searchData.currentPage"
             layout="prev, pager, next, sizes"
             :total="searchData.dataCount"
             @current-change="onCurrentChange"
