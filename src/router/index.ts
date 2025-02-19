@@ -1,7 +1,9 @@
 import { RouteRecordRaw, createRouter, createWebHashHistory } from "vue-router";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import { useSettingStore } from "@/store/setting";
 
+const settingStore = useSettingStore();
 // 配置路由
 // const routes: Array<RouteRecordRaw> = [
 //     {
@@ -40,6 +42,27 @@ const router = createRouter({
     routes
 });
 
+function getTitle(name: string, routes: Array<RouteRecordRaw> = []) {
+    const names = [];
+    while (true) {
+        names.push(name);
+        const currentRouteObj = routes.find((item) => item.name === name);
+        const parentRouteObj = routes.find((item) => item.name === currentRouteObj?.meta?.parentRouter);
+        if (parentRouteObj) {
+            name = parentRouteObj.name;
+        } else {
+            break;
+        }
+    }
+    return names.reverse();
+}
+
+function handlerRouters(currentRouteName: string) {
+    const titles = getTitle(currentRouteName, router.getRoutes());
+    console.log(titles, "titles");
+    settingStore.setTitles(titles);
+}
+
 const noStatusPage = ["/login", "/about"];
 
 router.beforeEach(async (_to, _from, next) => {
@@ -51,6 +74,7 @@ router.beforeEach(async (_to, _from, next) => {
     } else {
         next("/login");
     }
+    handlerRouters(_to.name);
 });
 
 router.afterEach((_to) => {

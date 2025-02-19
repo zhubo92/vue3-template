@@ -47,7 +47,8 @@ export default [
             "vue/require-v-for-key": "off",
             "vue/no-textarea-mustache": "off",
             "vue/no-v-html": "off",
-            quotes: ["error", "double"]
+            quotes: ["error", "double"],
+            "no-constant-condition": "off"
         },
         ignores: [
             "node_modules",
