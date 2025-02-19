@@ -1,16 +1,11 @@
 import { defineStore } from "pinia";
 import pinia from "@/store";
-import { refreshUserInfoApi, userLoginApi } from "@/api/user";
+import { ILoginRequest, refreshUserInfoApi, userLoginApi } from "@/api/user";
 import { IUserState } from "@/store/user/type";
-
-export interface ILoginRequest {
-    username: string;
-    password: string;
-}
 
 const useUserStoreHook = defineStore("userInfo", {
     state: (): IUserState => ({
-        username: "张三",
+        username: "",
         accessToken: "",
         roles: ["common"]
     }),
@@ -18,9 +13,9 @@ const useUserStoreHook = defineStore("userInfo", {
     actions: {
         storeUserLogin(data: ILoginRequest) {
             return userLoginApi(data).then((res) => {
-                this.username = res.username;
-                this.roles = res.roles;
-                this.accessToken = res.accessToken;
+                this.username = res.data.username;
+                this.roles = res.data.roles;
+                this.accessToken = res.data.accessToken;
                 return res;
             });
         },

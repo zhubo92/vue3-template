@@ -1,4 +1,4 @@
-import { post } from "@/http/request";
+import { IBaseResponse, post } from "@/http/request";
 
 export interface ILoginRequest {
     username: string;
@@ -15,10 +15,10 @@ export interface ILoginResponse {
 }
 
 // 定义的接口
-export const userLoginApi = async (data?: ILoginRequest) => {
-    return post<ILoginResponse>({}, "/login", data);
+export const userLoginApi = async (data: ILoginRequest) => {
+    return post<IBaseResponse<ILoginResponse>>({}, "/login", data);
 };
 
-export const refreshUserInfoApi = async (data?: IReLoginRequest) => {
+export const refreshUserInfoApi = async (data: IReLoginRequest) => {
     return post<ILoginResponse>({}, "/getUserInfo", data);
 };

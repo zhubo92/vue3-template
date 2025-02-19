@@ -3,9 +3,9 @@ import type { AxiosInstance, AxiosResponse, AxiosError, InternalAxiosRequestConf
 import { ElMessage } from "element-plus";
 import { getMessageInfo } from "@/http/status";
 
-// BaseResponse 为 res.data 的类型
+// IBaseResponse 为 res.data 的类型
 // T 为 res.data.data 的类型 不同的接口会返回不同的 data 所以我们加一个泛型表示
-interface BaseResponse<T = any> {
+export interface IBaseResponse<T = any> {
     code: number | string;
     message: string;
     data: T;
@@ -62,8 +62,8 @@ service.interceptors.response.use(
 const requestInstance = <T = any>(config: AxiosRequestConfig): Promise<T> => {
     const conf = config;
     return new Promise((resolve, reject) => {
-        service.request<any, AxiosResponse<BaseResponse>>(conf).then((res: AxiosResponse<BaseResponse>) => {
-            const { data, code, message } = res.data;
+        service.request<any, AxiosResponse<IBaseResponse>>(conf).then((res: AxiosResponse<IBaseResponse>) => {
+            const { code, message } = res.data;
             // 如果data.code为错误代码返回 message 信息
             if (code != 0) {
                 ElMessage({
@@ -77,7 +77,7 @@ const requestInstance = <T = any>(config: AxiosRequestConfig): Promise<T> => {
                     type: "success"
                 });
                 // 此处返回data信息 也就是 api 中配置好的 Response类型
-                resolve(data as T);
+                resolve(res.data as T);
             }
         });
     });
