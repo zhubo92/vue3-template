@@ -1,11 +1,6 @@
 module.exports = {
     // 继承推荐规范配置
-    extends: [
-        "stylelint-config-standard",
-        "stylelint-config-prettier",
-        "stylelint-config-recommended-less",
-        "stylelint-config-standard-vue"
-    ],
+    extends: ["stylelint-config-standard", "stylelint-config-recommended-less", "stylelint-config-standard-vue"],
     // 添加规则插件
     plugins: ["stylelint-order"],
     // 不同格式的文件指定自定义语法
