@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { computed, onMounted, reactive, ref, watch } from "vue";
 import { getProjectListApi } from "@/api/projects";
 
 interface IProject {
@@ -46,7 +45,6 @@ function onSizeChange(pageSize: number) {
     searchData.pageSize = pageSize;
 }
 const onSearch = () => {
-    console.log(projectList.value);
     let res: IProject[] = [];
     if (searchData.title || searchData.introduce) {
         if (searchData.title) {

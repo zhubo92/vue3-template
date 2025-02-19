@@ -19,10 +19,6 @@ export const userLoginApi = async (data: ILoginRequest) => {
     return post<IBaseResponse<ILoginResponse>>({}, "/login", data);
 };
 
-export const refreshUserInfoApi = async (data: IReLoginRequest) => {
-    return post<ILoginResponse>({}, "/getUserInfo", data);
-};
-
 export const getUserListApi = async () => {
     return get({}, "/getUserList");
 };

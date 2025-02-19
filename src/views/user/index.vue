@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref, watch } from "vue";
 import { getUserListApi } from "@/api/user";
 import { getRoleListApi } from "@/api/role";
 
@@ -63,13 +62,11 @@ function initEditUser(): IEditUser {
 }
 async function fetchUserData() {
     const { data } = await getUserListApi();
-    console.log(data, "data");
     userList.value = data;
 }
 
 async function fetchRoleData() {
     const { data } = await getRoleListApi();
-    console.log(data, "role");
     roleWithAuthList.value = data;
 }
 function onSearch() {
@@ -90,7 +87,6 @@ function onSearch() {
     userList.value = res;
 }
 function handleEdit(user: IUser) {
-    console.log(JSON.stringify(user.role));
     Object.assign(editUser, {
         ...user,
         role: user.role.map((item) => item.role || item.roleId)
@@ -132,7 +128,7 @@ function confirmEditUser() {
             <el-table-column prop="nickName" label="姓名"></el-table-column>
             <el-table-column prop="role" label="角色">
                 <template #default="{ row }">
-                    <el-button v-for="item in row.role" :key="item.role" type="primary" size="small">
+                    <el-button v-for="item in row.role" link :key="item.role" type="primary" size="small">
                         {{ item.roleName }}
                     </el-button>
                 </template>

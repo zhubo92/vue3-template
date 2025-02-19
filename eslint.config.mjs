@@ -3,12 +3,14 @@ import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginVue from "eslint-plugin-vue";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import eslintAutoImport from "./.eslintrc-auto-import.json" assert { type: "json" };
 
 /** @type {import("eslint").Linter.Config[]} */
 export default [
     {
         languageOptions: {
             globals: {
+                ...eslintAutoImport.globals,
                 ...globals.browser,
                 ...globals.node
             }

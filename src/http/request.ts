@@ -38,6 +38,13 @@ service.interceptors.response.use(
                 type: "error"
             });
         }
+        if (res.data.code != 0) {
+            ElMessage({
+                message: getMessageInfo(res.data.message),
+                type: "error"
+            });
+            return Promise.reject(res.data);
+        }
         return res;
     },
     (error: any) => {

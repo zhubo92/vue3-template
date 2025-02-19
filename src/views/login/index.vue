@@ -1,11 +1,8 @@
 <script lang="ts" setup>
 import { useUserStore } from "@/store/user";
-import { reactive } from "vue";
 import { User, Lock } from "@element-plus/icons-vue";
-import { useRouter } from "vue-router";
 
 const userStore = useUserStore();
-console.log(userStore);
 const router = useRouter();
 
 const userInfo = reactive({

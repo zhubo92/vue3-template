@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
 import { getRoleListApi } from "@/api/role";
-import { ElMessageBox, ElMessage } from "element-plus";
 
 interface IRole {
     roleId: number;
     roleName: string;
 }
 
+const router = useRouter();
 const roleList = ref<IRole[]>([]);
 onMounted(() => {
     fetchRoleData();
@@ -40,7 +39,15 @@ function onAddRole() {
             });
         });
 }
-function onChangeRole(role: IRole) {}
+function onChangeAuth(auth) {
+    router.push({
+        path: "/auth",
+        query: {
+            id: auth.roleId,
+            auth: auth.authority
+        }
+    });
+}
 </script>
 
 <template>
@@ -55,7 +62,7 @@ function onChangeRole(role: IRole) {}
             <el-table-column prop="roleName" label="角色名称"></el-table-column>
             <el-table-column label="操作">
                 <template #default="{ row }">
-                    <el-button type="primary" size="small" @click="onChangeRole(row)">修改权限</el-button>
+                    <el-button type="primary" size="small" @click="onChangeAuth(row)">修改权限</el-button>
                 </template>
             </el-table-column>
         </el-table>

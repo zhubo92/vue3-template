@@ -41,6 +41,12 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
             ElementPlus({}),
             // 自动导入组件
             AutoImport({
+                // 定义需要自动引入的框架
+                imports: ["vue", "vue-router", "pinia"],
+                // 处理 eslint，自动生成 .eslintrc-auto-import.json
+                eslintrc: {
+                    enabled: true
+                },
                 resolvers: [ElementPlusResolver(), IconsResolver()],
                 dts: fileURLToPath(new URL("./types/auto-imports.d.ts", import.meta.url))
             }),
