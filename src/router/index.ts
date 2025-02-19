@@ -2,6 +2,7 @@ import { RouteRecordRaw, createRouter, createWebHashHistory } from "vue-router";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { useSettingStore } from "@/store/setting";
+import { getTitle } from "@/utils";
 
 const settingStore = useSettingStore();
 // 配置路由
@@ -41,21 +42,6 @@ const router = createRouter({
     history: createWebHashHistory(),
     routes
 });
-
-function getTitle(name: string, routes: Array<RouteRecordRaw> = []) {
-    const names = [];
-    while (true) {
-        names.push(name);
-        const currentRouteObj = routes.find((item) => item.name === name);
-        const parentRouteObj = routes.find((item) => item.name === currentRouteObj?.meta?.parentRouter);
-        if (parentRouteObj) {
-            name = parentRouteObj.name;
-        } else {
-            break;
-        }
-    }
-    return names.reverse();
-}
 
 function handlerRouters(currentRouteName: string) {
     const titles = getTitle(currentRouteName, router.getRoutes());
