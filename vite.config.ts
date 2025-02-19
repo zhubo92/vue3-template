@@ -10,6 +10,7 @@ import Components from "unplugin-vue-components/vite";
 import IconsResolver from "unplugin-icons/resolver";
 import ElementPlus from "unplugin-element-plus/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     // 获取当前工作目录
@@ -113,6 +114,22 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
                 input: {
                     index: fileURLToPath(new URL("./index.html", import.meta.url))
                 },
+                plugins: [visualizer({ open: true })],
+
+                // experimentalLogSideEffects: true,
+                // output: {
+                // treeshake: {
+                //     preset: "recommended"
+                // },
+                // experimentalMinChunkSize: 20 * 1024, // 单位 B
+                // manualChunks: (id: string) => {
+                //     if (id.includes("node_modules")) {
+                //         return "vendor";
+                //     }
+                //     return "index";
+                // }
+                // }
+
                 // 静态资源分类打包
                 output: {
                     format: "esm",
